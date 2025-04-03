@@ -5,7 +5,7 @@ import "../../styles/calculatorStyles.css";
 function App() {
     const [value, setValue] = useState("");
 
-    const handleClick = (e: any) => {
+    const handleClick = (e) => {
         setValue(value + e.target.value);
     };
 
