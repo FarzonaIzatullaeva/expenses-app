@@ -3,15 +3,16 @@ import { useState } from "react";
 import "../../styles/calculatorStyles.css";
 
 function App() {
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState<string>("");
 
-    const handleClick = (e) => {
-        setValue(value + e.target.value);
+    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+        const target = e.target as HTMLInputElement;
+        setValue((prev) => prev + target.value);
     };
 
     const calculateResult = () => {
         try {
-            setValue(Function(`"use strict"; return (${value})`)());
+            setValue(eval(value).toString()); // Replaced `Function()` with `eval()` for simplicity
         } catch {
             setValue("Error");
         }
