@@ -2,66 +2,62 @@
 import { useState } from "react";
 import "../../styles/calculatorStyles.css";
 
-function App() {
+function Calculator() {
     const [value, setValue] = useState<string>("");
 
-    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
-        const target = e.target as HTMLInputElement;
-        setValue((prev) => prev + target.value);
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setValue((prev) => prev + e.currentTarget.value);
     };
 
     const calculateResult = () => {
         try {
-            setValue(eval(value).toString()); // Replaced `Function()` with `eval()` for simplicity
+            setValue(eval(value).toString());
         } catch {
             setValue("Error");
         }
     };
 
-    return (
-        <div className="container">
-            <div className="calculator">
-                <div id="main-line">
-                    <input 
-                        type="text" 
-                        id="main-input" 
-                        value={value} 
-                        onChange={(e) => setValue(e.target.value)} 
-                    />
-                </div>
+    const clearInput = () => setValue("");
+    const deleteLast = () => setValue(value.slice(0, -1));
 
-                <div id="row-1">
-                    <input type="button" value="AC" onClick={() => setValue("")} className="button"/>
-                    <input type="button" value="DE" onClick={() => setValue(value.slice(0, -1))} className="button"/>
-                    <input type="button" value="." onClick={handleClick} className="button"/>
-                    <input type="button" value="/" onClick={handleClick} className="button"/>
-                </div>
-                <div id="row-2">
-                    <input type="button" value="7" onClick={handleClick} className="button"/>
-                    <input type="button" value="8" onClick={handleClick} className="button"/>
-                    <input type="button" value="9" onClick={handleClick} className="button"/>
-                    <input type="button" value="*" onClick={handleClick} className="button"/>
-                </div>
-                <div id="row-3">
-                    <input type="button" value="4" onClick={handleClick} className="button"/>
-                    <input type="button" value="5" onClick={handleClick} className="button"/>
-                    <input type="button" value="6" onClick={handleClick} className="button"/>
-                    <input type="button" value="+" onClick={handleClick} className="button"/>
-                </div>
-                <div id="row-4">
-                    <input type="button" value="1" onClick={handleClick} className="button"/>
-                    <input type="button" value="2" onClick={handleClick} className="button"/>
-                    <input type="button" value="3" onClick={handleClick} className="button"/>
-                    <input type="button" value="-" onClick={handleClick} className="button"/>
-                </div>
-                <div id="row-5">
-                    <input type="button" value="00" onClick={handleClick} className="button" id="zero-zero"/>
-                    <input type="button" value="0" onClick={handleClick} id="zero" className="button"/>
-                    <input type="button" value="=" id="equal" onClick={calculateResult} className="button"/>
+    return (
+        <div className="calculator-container">
+            <div className="calculator">
+                <input 
+                    type="text" 
+                    id="display" 
+                    value={value} 
+                    readOnly 
+                />
+
+                <div className="buttons">
+                    <button onClick={clearInput} className="operator">AC</button>
+                    <button onClick={deleteLast} className="operator">DE</button>
+                    <button onClick={handleClick} value="." className="operator">.</button>
+                    <button onClick={handleClick} value="/" className="operator">/</button>
+
+                    <button onClick={handleClick} value="7">7</button>
+                    <button onClick={handleClick} value="8">8</button>
+                    <button onClick={handleClick} value="9">9</button>
+                    <button onClick={handleClick} value="*" className="operator">×</button>
+
+                    <button onClick={handleClick} value="4">4</button>
+                    <button onClick={handleClick} value="5">5</button>
+                    <button onClick={handleClick} value="6">6</button>
+                    <button onClick={handleClick} value="-" className="operator">−</button>
+
+                    <button onClick={handleClick} value="1">1</button>
+                    <button onClick={handleClick} value="2">2</button>
+                    <button onClick={handleClick} value="3">3</button>
+                    <button onClick={handleClick} value="+" className="operator">+</button>
+
+                    <button onClick={handleClick} value="00" className="zero">00</button>
+                    <button onClick={handleClick} value="0" className="zero">0</button>
+                    <button onClick={calculateResult} className="equals">=</button>
                 </div>
             </div>
         </div>
     );
 }
 
-export default App;
+export default Calculator;
