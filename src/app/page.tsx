@@ -66,11 +66,13 @@ export default function Home() {
           <SavingInput title="Saving Goal" history={savingGoal} onAdd={(entry)=> setSavingGoal([entry, ...savingGoal])}></SavingInput>
         </div>
 
+        
+        </div>
+
         <div className="calculator">
           <Calculator></Calculator>
         </div>
-        </div>
-
     </div>
+    
   );
 }
