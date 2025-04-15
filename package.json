@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mathjs": "^14.4.0",
     "next": "^15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/mathjs": "^9.4.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
