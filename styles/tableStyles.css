@@ -22,12 +22,6 @@ background: linear-gradient(0deg, rgba(251,228,216,1) 0%, rgb(167, 112, 141) 51%
     
 }
 
-#net-worth{
-    border: 1px solid black;
-    border-radius: 40px;
-    padding: 10px;
-    margin-bottom: 30px;
-}
 .addButtons:hover{
     background-color: rgb(199, 153, 177);
 }

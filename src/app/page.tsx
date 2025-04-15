@@ -6,7 +6,7 @@ import {useState, useEffect} from "react"; // importing necessary hiiks from Rea
 import '../../styles/tableStyles.css';
 import MoneyInput from "../components/MoneyInput";
 import SavingInput from "@/components/SavingInput";
-import Calculator from "../components/Calculator";
+import Calculator from "@/components/Calculator";
 
 
 // Defaning an interfac for the data structure:
@@ -43,18 +43,11 @@ export default function Home() {
     localStorage.setItem("savingGoal", JSON.stringify(savingGoal));
   }, [moneyIn, moneyOut, savingGoal]);
 
-  const totalMoneyIn = moneyIn.reduce((sum, entry) => sum + entry.amount, 0);
-  const totalMoneyOut = moneyOut.reduce((sum, entry) => sum + entry.amount, 0);
-  const totalSavings = savingGoal.reduce((sum, entry) => sum + entry.amount, 0);
-  const netWorth = totalMoneyIn - totalMoneyOut + totalSavings;
-
   return (
     <div id="mainDiv" >
 
         <h1 id="appName">Welcome to your money tracker!</h1>
-
         <div className="main-row">
-        <h1 id="net-worth">Net Worth: ${netWorth.toFixed(2)}</h1>
           <div className="column-1">
             <MoneyInput title="Money In" history={moneyIn} onAdd={(entry)=> setMoneyIn([entry, ...moneyIn])}></MoneyInput>
           </div>
@@ -65,14 +58,11 @@ export default function Home() {
         <div className="column-3">
           <SavingInput title="Saving Goal" history={savingGoal} onAdd={(entry)=> setSavingGoal([entry, ...savingGoal])}></SavingInput>
         </div>
-
-        
         </div>
 
-        <div className="calculator">
-          <Calculator></Calculator>
+        <div id="calculator">
+            <Calculator></Calculator>
         </div>
     </div>
-    
   );
 }
